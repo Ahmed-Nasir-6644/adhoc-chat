@@ -28,6 +28,7 @@ qt_add_qml_module(appchatApp
         SettingsPanel.qml
         CreateRoomDialog.qml
         CodeSharePopup.qml
+        RegistrationDialog.qml
 )
 
 set_target_properties(appchatApp PROPERTIES

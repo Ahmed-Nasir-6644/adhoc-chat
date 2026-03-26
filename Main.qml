@@ -24,6 +24,8 @@ ApplicationWindow {
     property bool someoneTyping: false
     property var allRooms: []
     property var joinedRooms: []
+    property string currentUsername: ""
+    property bool isRegistered: false
 
     // User colors for consistent avatars
     property var userColors: [
@@ -32,169 +34,118 @@ ApplicationWindow {
     ]
 
     Component.onCompleted: {
-        // Initialize with default rooms
+        // Initialize with a single demo room
         window.allRooms = [
-            { id: 1, name: "General", type: "public", code: "GEN001", members: 4, messages: [
-                { sender: "Ahmed", text: "Hey everyone, welcome to General!", isOwn: false, color: userColors[0], initials: "AH" },
-                { sender: "You", text: "Thanks! This QML UI looks great.", isOwn: true, color: userColors[9], initials: "YO" }
-            ]},
-            { id: 2, name: "Development", type: "public", code: "DEV002", members: 3, messages: [
-                { sender: "Dev Lead", text: "Let's discuss the API design today.", isOwn: false, color: userColors[4], initials: "DL" }
-            ]},
-            { id: 3, name: "Design", type: "public", code: "DES003", members: 2, messages: [
-                { sender: "Designer", text: "Check out these mockups", isOwn: false, color: userColors[6], initials: "DE" }
+            { id: 1, name: "Demo Room", type: "public", code: "DEMO001", members: 1, messages: [
+                { sender: "System", text: "Welcome to Adhoc Chat! Start sending messages.", isOwn: false, color: userColors[5], initials: "SY" }
             ]}
         ]
-        window.joinedRooms = window.allRooms.slice(0, 3)
+        window.joinedRooms = []
+        
+        // Show registration dialog
+        registrationDialog.open()
     }
 
-    StackLayout {
+    // Main Chat View (loaded after registration)
+    RowLayout {
         anchors.fill: parent
-        currentIndex: window.isInChat ? 1 : 0
-        
-        // Index 0: Home Page
-        HomePage {
-            id: homePage
-            allRooms: window.allRooms
-            
-            onJoinRoom: (roomCode) => {
-                const found = findRoomByCode(roomCode)
-                if (found) {
-                    window.isInChat = true
-                    window.selectedRoomIndex = found.index
-                } else {
-                    console.log("Room not found:", roomCode)
-                }
+        spacing: 0
+        visible: window.isRegistered
+
+        // Left Sidebar
+        Sidebar {
+            Layout.fillHeight: true
+            Layout.preferredWidth: 220
+            selectedRoomIndex: window.selectedRoomIndex
+            rooms: window.joinedRooms
+            onRoomSelected: (index) => {
+                window.selectedRoomIndex = index
             }
-            
-            onCreateRoomRequested: createDialog.open()
-            
-            onJoinPublicRoom: (roomIndex) => {
-                if (roomIndex >= 0 && roomIndex < homePage.publicRooms.length) {
-                    const room = homePage.publicRooms[roomIndex]
-                    const found = findRoomByCode(room.code)
-                    if (found) {
-                        window.isInChat = true
-                        window.selectedRoomIndex = found.index
+        }
+
+        // Main Chat Area
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            color: window.bgPrimary
+
+            ColumnLayout {
+                anchors.fill: parent
+                anchors.margins: 18
+                spacing: 12
+
+                // Chat Header
+                ChatHeader {
+                    id: chatHeader
+                    Layout.fillWidth: true
+                    roomName: window.joinedRooms[window.selectedRoomIndex] ? window.joinedRooms[window.selectedRoomIndex].name : "Room"
+                    onlineCount: 4
+                    someoneTyping: window.someoneTyping
+                    onSettingsRequested: settingsPanel.open()
+                }
+
+                // Message List
+                MessageList {
+                    id: messageList
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    messages: window.joinedRooms[window.selectedRoomIndex] ? window.joinedRooms[window.selectedRoomIndex].messages : []
+                }
+
+                // Message Composer
+                MessageComposer {
+                    id: composer
+                    Layout.fillWidth: true
+                    onMessageSent: (text) => {
+                        if (window.selectedRoomIndex >= 0 && window.selectedRoomIndex < window.joinedRooms.length) {
+                            // Get first two letters of username for initials
+                            const initials = window.currentUsername.substring(0, 2).toUpperCase()
+                            
+                            window.joinedRooms[window.selectedRoomIndex].messages.push({
+                                sender: window.currentUsername,
+                                text: text,
+                                isOwn: true,
+                                color: window.userColors[9],
+                                initials: initials
+                            })
+                            // Trigger model update
+                            var temp = window.joinedRooms[window.selectedRoomIndex].messages
+                            window.joinedRooms[window.selectedRoomIndex].messages = []
+                            window.joinedRooms[window.selectedRoomIndex].messages = temp
+                        }
                     }
+                }
+                
+                Binding {
+                    target: window
+                    property: "someoneTyping"
+                    value: composer.isTyping
                 }
             }
         }
+
+        // Right Members Panel
+        MembersPanel {
+            Layout.fillHeight: true
+            Layout.preferredWidth: 220
+            members: []
+        }
+    }
+
+    // Registration Dialog
+    RegistrationDialog {
+        id: registrationDialog
         
-        // Index 1: Chat View
-        RowLayout {
-            spacing: 0
+        onRegistrationCompleted: (username) => {
+            window.currentUsername = username
+            window.isRegistered = true
             
-            // Back to Home Button
-            Rectangle {
-                Layout.preferredWidth: 60
-                Layout.fillHeight: true
-                color: "#151a1f"
-                border.width: 1
-                border.color: "#28313a"
-                
-                ColumnLayout {
-                    anchors.fill: parent
-                    anchors.margins: 12
-                    
-                    Button {
-                        Layout.preferredWidth: 36
-                        Layout.preferredHeight: 36
-                        text: "←"
-                        palette.buttonText: window.textPrimary
-                        font.pixelSize: 18
-                        
-                        background: Rectangle {
-                            color: parent.hovered ? "#28313a" : "#1b2229"
-                            radius: 6
-                            border.width: 1
-                            border.color: "#28313a"
-                        }
-                        
-                        onClicked: window.isInChat = false
-                        ToolTip.visible: hovered
-                        ToolTip.text: "Back to home"
-                    }
-                    
-                    Rectangle { Layout.fillHeight: true }
-                }
-            }
-
-            // Left Sidebar
-            Sidebar {
-                Layout.fillHeight: true
-                Layout.preferredWidth: 220
-                selectedRoomIndex: window.selectedRoomIndex
-                rooms: window.joinedRooms
-                onRoomSelected: (index) => {
-                    window.selectedRoomIndex = index
-                }
-            }
-
-            // Main Chat Area
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                color: window.bgPrimary
-
-                ColumnLayout {
-                    anchors.fill: parent
-                    anchors.margins: 18
-                    spacing: 12
-
-                    // Chat Header
-                    ChatHeader {
-                        id: chatHeader
-                        Layout.fillWidth: true
-                        roomName: window.joinedRooms[window.selectedRoomIndex] ? window.joinedRooms[window.selectedRoomIndex].name : "Room"
-                        onlineCount: 4
-                        someoneTyping: window.someoneTyping
-                        onSettingsRequested: settingsPanel.open()
-                    }
-
-                    // Message List
-                    MessageList {
-                        id: messageList
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        messages: window.joinedRooms[window.selectedRoomIndex] ? window.joinedRooms[window.selectedRoomIndex].messages : []
-                    }
-
-                    // Message Composer
-                    MessageComposer {
-                        id: composer
-                        Layout.fillWidth: true
-                        onMessageSent: (text) => {
-                            if (window.selectedRoomIndex >= 0 && window.selectedRoomIndex < window.joinedRooms.length) {
-                                window.joinedRooms[window.selectedRoomIndex].messages.push({
-                                    sender: "You",
-                                    text: text,
-                                    isOwn: true,
-                                    color: window.userColors[9],
-                                    initials: "YO"
-                                })
-                                // Trigger model update
-                                var temp = window.joinedRooms[window.selectedRoomIndex].messages
-                                window.joinedRooms[window.selectedRoomIndex].messages = []
-                                window.joinedRooms[window.selectedRoomIndex].messages = temp
-                            }
-                        }
-                    }
-                    
-                    Binding {
-                        target: window
-                        property: "someoneTyping"
-                        value: composer.isTyping
-                    }
-                }
-            }
-
-            // Right Members Panel
-            MembersPanel {
-                Layout.fillHeight: true
-                Layout.preferredWidth: 220
-                members: []
-            }
+            // Add user to demo room
+            window.joinedRooms = [window.allRooms[0]]
+            window.selectedRoomIndex = 0
+            window.isInChat = true
+            
+            console.log("User registered:", username)
         }
     }
 
