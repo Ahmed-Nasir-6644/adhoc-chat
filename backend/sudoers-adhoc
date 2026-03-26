@@ -1,0 +1,2 @@
+# Allow adhoc-chat app to setup ad-hoc network without password
+%sudo ALL=(ALL) NOPASSWD: /home/ahmed-nasir/Desktop/CApp/adhoc-chat/backend/setup-adhoc-network.sh

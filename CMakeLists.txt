@@ -10,6 +10,8 @@ qt_standard_project_setup(REQUIRES 6.4)
 
 qt_add_executable(appchatApp
     main.cpp
+    NetworkSetup.h
+    NetworkSetup.cpp
 )
 
 qt_add_qml_module(appchatApp

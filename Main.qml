@@ -20,12 +20,24 @@ ApplicationWindow {
 
     // State
     property bool isInChat: false
+    property bool isJoiningNetwork: false
     property int selectedRoomIndex: 0
     property bool someoneTyping: false
     property var allRooms: []
     property var joinedRooms: []
     property string currentUsername: ""
     property bool isRegistered: false
+    
+    // Filter to only show public rooms
+    property var publicRooms: {
+        const publicOnly = []
+        for (let i = 0; i < allRooms.length; i++) {
+            if (allRooms[i].type === "public") {
+                publicOnly.push(allRooms[i])
+            }
+        }
+        return publicOnly
+    }
 
     // User colors for consistent avatars
     property var userColors: [
@@ -46,11 +58,46 @@ ApplicationWindow {
         registrationDialog.open()
     }
 
-    // Main Chat View (loaded after registration)
+    // Home Page (Network Setup)
+    Loader {
+        anchors.fill: parent
+        active: window.isRegistered && window.isJoiningNetwork
+        visible: active
+        sourceComponent: HomePage {
+            allRooms: window.allRooms
+            
+            onJoinRoom: (roomCode) => {
+                console.log("Joining room with code:", roomCode)
+                // Find the room
+                const roomInfo = findRoomByCode(roomCode)
+                if (roomInfo) {
+                    // Start network setup
+                    networkSetup.startAdhocSetup()
+                } else {
+                    errorDialog.errorMessage = "Room not found"
+                    errorDialog.open()
+                }
+            }
+            
+            onJoinPublicRoom: (roomIndex) => {
+                console.log("Joining public room:", roomIndex)
+                if (roomIndex >= 0 && roomIndex < window.publicRooms.length) {
+                    // Start network setup
+                    networkSetup.startAdhocSetup()
+                }
+            }
+            
+            onCreateRoomRequested: {
+                createDialog.open()
+            }
+        }
+    }
+
+    // Main Chat View (loaded after joining network)
     RowLayout {
         anchors.fill: parent
         spacing: 0
-        visible: window.isRegistered
+        visible: window.isRegistered && !window.isJoiningNetwork
 
         // Left Sidebar
         Sidebar {
@@ -139,13 +186,82 @@ ApplicationWindow {
         onRegistrationCompleted: (username) => {
             window.currentUsername = username
             window.isRegistered = true
+            window.isJoiningNetwork = true
             
+            console.log("User registered:", username, "- Now showing network join page")
+        }
+    }
+
+    // Network Setup Connections
+    Connections {
+        target: networkSetup
+        
+        function onSetupSucceeded() {
+            console.log("Network setup succeeded, entering chat...")
             // Add user to demo room
             window.joinedRooms = [window.allRooms[0]]
             window.selectedRoomIndex = 0
+            window.isJoiningNetwork = false
             window.isInChat = true
+        }
+        
+        function onSetupFailed(errorMessage) {
+            console.log("Network setup failed:", errorMessage)
+            errorDialog.errorMessage = "Network setup failed: " + errorMessage
+            errorDialog.open()
+        }
+        
+        function onSetupProgress(message) {
+            console.log("Setup progress:", message)
+        }
+    }
+
+    // Error Dialog
+    Dialog {
+        id: errorDialog
+        title: "Error"
+        modal: true
+        
+        property string errorMessage: ""
+        
+        property color bgPrimary: "#101316"
+        property color borderColor: "#28313a"
+        property color textPrimary: "#e8edf2"
+        property color accent: "#2dd4bf"
+        
+        width: 400
+        anchors.centerIn: parent
+        
+        background: Rectangle {
+            color: bgPrimary
+            border.width: 1
+            border.color: borderColor
+            radius: 12
+        }
+        
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: 24
+            spacing: 20
             
-            console.log("User registered:", username)
+            Label {
+                text: errorDialog.errorMessage
+                color: textPrimary
+                font.pixelSize: 14
+                wrapMode: Text.Wrap
+                Layout.fillWidth: true
+            }
+            
+            Button {
+                text: "OK"
+                Layout.alignment: Qt.AlignHCenter
+                onClicked: errorDialog.close()
+                
+                background: Rectangle {
+                    color: accent
+                    radius: 8
+                }
+            }
         }
     }
 
