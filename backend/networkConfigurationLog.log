@@ -94,3 +94,451 @@ INFO:2026-03-26 21:56:18,583::
 Running: sudo ifconfig bat0 10.10.1.1/24
 INFO:2026-03-26 21:56:18,610::
 Running: sudo ifconfig bat0 up
+INFO:2026-03-26 22:18:29,332::
+1 interfaces are defined
+INFO:2026-03-26 22:18:29,332::
+Detecting batman compatibility of the interface:wlp2s0
+INFO:2026-03-26 22:18:29,332::
+The interface is NOT compatible
+INFO:2026-03-26 22:18:29,332::
+Reinstalling batman module
+INFO:2026-03-26 22:18:29,332::
+Removing the module: batman-adv
+INFO:2026-03-26 22:18:29,421::
+Installing the module: batman-adv
+INFO:2026-03-26 22:18:29,455::
+Running: sudo ifconfig wlp2s0 down
+INFO:2026-03-26 22:18:30,069::
+Running: sudo ip addr flush dev wlp2s0
+INFO:2026-03-26 22:18:30,088::
+Running: sudo iw dev wlp2s0 set type ibss
+INFO:2026-03-26 22:18:30,107::
+Running: sudo rfkill unblock all
+INFO:2026-03-26 22:18:30,191::
+Running: sudo ifconfig wlp2s0 up
+INFO:2026-03-26 22:18:30,435::
+Running: sudo iw dev wlp2s0 ibss join CTLnetwork 2412 HT20 fixed-freq 02:12:34:56:78:9D
+INFO:2026-03-26 22:18:30,472::
+Running: sudo ip link set mtu 1532 dev wlp2s0
+INFO:2026-03-26 22:18:30,509::
+Running: sudo batctl if add wlp2s0
+INFO:2026-03-26 22:18:30,573::
+Running: sudo ifconfig bat0 10.10.1.1/24
+INFO:2026-03-26 22:18:30,615::
+Running: sudo ifconfig bat0 up
+INFO:2026-03-26 22:19:31,636::
+1 interfaces are defined
+INFO:2026-03-26 22:19:31,636::
+Detecting batman compatibility of the interface:wlp2s0
+INFO:2026-03-26 22:19:31,636::
+The interface is NOT compatible
+INFO:2026-03-26 22:19:31,636::
+Reinstalling batman module
+INFO:2026-03-26 22:19:31,637::
+Removing the module: batman-adv
+INFO:2026-03-26 22:19:31,743::
+Installing the module: batman-adv
+INFO:2026-03-26 22:19:31,796::
+Running: sudo ifconfig wlp2s0 down
+INFO:2026-03-26 22:19:32,441::
+Running: sudo ip addr flush dev wlp2s0
+INFO:2026-03-26 22:19:32,474::
+Running: sudo iw dev wlp2s0 set type ibss
+INFO:2026-03-26 22:19:32,501::
+Running: sudo rfkill unblock all
+INFO:2026-03-26 22:19:32,587::
+Running: sudo ifconfig wlp2s0 up
+INFO:2026-03-26 22:19:32,843::
+Running: sudo iw dev wlp2s0 ibss join CTLnetwork 2412 HT20 fixed-freq 02:12:34:56:78:9D
+INFO:2026-03-26 22:19:32,865::
+Running: sudo ip link set mtu 1532 dev wlp2s0
+INFO:2026-03-26 22:19:32,892::
+Running: sudo batctl if add wlp2s0
+INFO:2026-03-26 22:19:32,955::
+Running: sudo ifconfig bat0 10.10.1.1/24
+INFO:2026-03-26 22:19:32,984::
+Running: sudo ifconfig bat0 up
+INFO:2026-03-26 22:20:51,997::
+1 interfaces are defined
+INFO:2026-03-26 22:20:51,997::
+Detecting batman compatibility of the interface:wlp2s0
+INFO:2026-03-26 22:20:51,997::
+The interface is NOT compatible
+INFO:2026-03-26 22:20:51,998::
+Reinstalling batman module
+INFO:2026-03-26 22:20:51,998::
+Removing the module: batman-adv
+INFO:2026-03-26 22:20:52,078::
+Installing the module: batman-adv
+INFO:2026-03-26 22:20:52,174::
+Running: sudo ifconfig wlp2s0 down
+INFO:2026-03-26 22:20:52,851::
+Running: sudo ip addr flush dev wlp2s0
+INFO:2026-03-26 22:20:52,878::
+Running: sudo iw dev wlp2s0 set type ibss
+INFO:2026-03-26 22:20:52,905::
+Running: sudo rfkill unblock all
+INFO:2026-03-26 22:20:52,994::
+Running: sudo ifconfig wlp2s0 up
+INFO:2026-03-26 22:20:53,247::
+Running: sudo iw dev wlp2s0 ibss join CTLnetwork 2412 HT20 fixed-freq 02:12:34:56:78:9D
+INFO:2026-03-26 22:20:53,279::
+Running: sudo ip link set mtu 1532 dev wlp2s0
+INFO:2026-03-26 22:20:53,307::
+Running: sudo batctl if add wlp2s0
+INFO:2026-03-26 22:20:53,370::
+Running: sudo ifconfig bat0 10.10.1.1/24
+INFO:2026-03-26 22:20:53,408::
+Running: sudo ifconfig bat0 up
+INFO:2026-03-26 22:22:49,150::
+1 interfaces are defined
+INFO:2026-03-26 22:22:49,151::
+Detecting batman compatibility of the interface:wlp2s0
+INFO:2026-03-26 22:22:49,151::
+The interface is NOT compatible
+INFO:2026-03-26 22:22:49,151::
+Reinstalling batman module
+INFO:2026-03-26 22:22:49,151::
+Removing the module: batman-adv
+INFO:2026-03-26 22:22:49,228::
+Installing the module: batman-adv
+INFO:2026-03-26 22:22:49,263::
+Running: sudo ifconfig wlp2s0 down
+INFO:2026-03-26 22:22:49,851::
+Running: sudo ip addr flush dev wlp2s0
+INFO:2026-03-26 22:22:49,871::
+Running: sudo iw dev wlp2s0 set type ibss
+INFO:2026-03-26 22:22:49,889::
+Running: sudo rfkill unblock all
+INFO:2026-03-26 22:22:49,972::
+Running: sudo ifconfig wlp2s0 up
+INFO:2026-03-26 22:22:50,220::
+Running: sudo iw dev wlp2s0 ibss join CTLnetwork 2412 HT20 fixed-freq 02:12:34:56:78:9D
+INFO:2026-03-26 22:22:50,247::
+Running: sudo ip link set mtu 1532 dev wlp2s0
+INFO:2026-03-26 22:22:50,267::
+Running: sudo batctl if add wlp2s0
+INFO:2026-03-26 22:22:50,301::
+Running: sudo ifconfig bat0 10.10.1.1/24
+INFO:2026-03-26 22:22:50,324::
+Running: sudo ifconfig bat0 up
+INFO:2026-03-26 22:23:41,340::
+1 interfaces are defined
+INFO:2026-03-26 22:23:41,341::
+Detecting batman compatibility of the interface:wlp2s0
+INFO:2026-03-26 22:23:41,341::
+The interface is NOT compatible
+INFO:2026-03-26 22:23:41,341::
+Reinstalling batman module
+INFO:2026-03-26 22:23:41,341::
+Removing the module: batman-adv
+INFO:2026-03-26 22:23:41,451::
+Installing the module: batman-adv
+INFO:2026-03-26 22:23:41,490::
+Running: sudo ifconfig wlp2s0 down
+INFO:2026-03-26 22:23:41,509::
+Running: sudo ip addr flush dev wlp2s0
+INFO:2026-03-26 22:23:41,530::
+Running: sudo iw dev wlp2s0 set type ibss
+INFO:2026-03-26 22:23:41,550::
+Running: sudo rfkill unblock all
+INFO:2026-03-26 22:23:41,633::
+Running: sudo ifconfig wlp2s0 up
+INFO:2026-03-26 22:23:41,892::
+Running: sudo iw dev wlp2s0 ibss join CTLnetwork 2412 HT20 fixed-freq 02:12:34:56:78:9D
+INFO:2026-03-26 22:23:41,925::
+Running: sudo ip link set mtu 1532 dev wlp2s0
+INFO:2026-03-26 22:23:41,949::
+Running: sudo batctl if add wlp2s0
+INFO:2026-03-26 22:23:41,984::
+Running: sudo ifconfig bat0 10.10.1.1/24
+INFO:2026-03-26 22:23:42,009::
+Running: sudo ifconfig bat0 up
+INFO:2026-03-26 22:25:47,177::
+1 interfaces are defined
+INFO:2026-03-26 22:25:47,177::
+Detecting batman compatibility of the interface:wlp2s0
+INFO:2026-03-26 22:25:47,178::
+The interface is NOT compatible
+INFO:2026-03-26 22:25:47,178::
+Reinstalling batman module
+INFO:2026-03-26 22:25:47,178::
+Removing the module: batman-adv
+INFO:2026-03-26 22:25:47,248::
+Installing the module: batman-adv
+INFO:2026-03-26 22:25:47,288::
+Running: sudo ifconfig wlp2s0 down
+INFO:2026-03-26 22:25:47,917::
+Running: sudo ip addr flush dev wlp2s0
+INFO:2026-03-26 22:25:47,956::
+Running: sudo iw dev wlp2s0 set type ibss
+INFO:2026-03-26 22:25:47,987::
+Running: sudo rfkill unblock all
+INFO:2026-03-26 22:25:48,211::
+Running: sudo ifconfig wlp2s0 up
+INFO:2026-03-26 22:25:48,458::
+Running: sudo iw dev wlp2s0 ibss join CTLnetwork 2412 HT20 fixed-freq 02:12:34:56:78:9D
+INFO:2026-03-26 22:25:48,478::
+Running: sudo ip link set mtu 1532 dev wlp2s0
+INFO:2026-03-26 22:25:48,498::
+Running: sudo batctl if add wlp2s0
+INFO:2026-03-26 22:25:48,533::
+Running: sudo ifconfig bat0 10.10.1.1/24
+INFO:2026-03-26 22:25:48,562::
+Running: sudo ifconfig bat0 up
+INFO:2026-03-26 22:26:37,485::
+1 interfaces are defined
+INFO:2026-03-26 22:26:37,485::
+Detecting batman compatibility of the interface:wlp2s0
+INFO:2026-03-26 22:26:37,485::
+The interface is NOT compatible
+INFO:2026-03-26 22:26:37,485::
+Reinstalling batman module
+INFO:2026-03-26 22:26:37,485::
+Removing the module: batman-adv
+INFO:2026-03-26 22:26:37,563::
+Installing the module: batman-adv
+INFO:2026-03-26 22:26:37,608::
+Running: sudo ifconfig wlp2s0 down
+INFO:2026-03-26 22:26:38,176::
+Running: sudo ip addr flush dev wlp2s0
+INFO:2026-03-26 22:26:38,196::
+Running: sudo iw dev wlp2s0 set type ibss
+INFO:2026-03-26 22:26:38,214::
+Running: sudo rfkill unblock all
+INFO:2026-03-26 22:26:38,295::
+Running: sudo ifconfig wlp2s0 up
+INFO:2026-03-26 22:26:38,544::
+Running: sudo iw dev wlp2s0 ibss join CTLnetwork 2412 HT20 fixed-freq 02:12:34:56:78:9D
+INFO:2026-03-26 22:26:38,569::
+Running: sudo ip link set mtu 1532 dev wlp2s0
+INFO:2026-03-26 22:26:38,589::
+Running: sudo batctl if add wlp2s0
+INFO:2026-03-26 22:26:38,623::
+Running: sudo ifconfig bat0 10.10.1.1/24
+INFO:2026-03-26 22:26:38,645::
+Running: sudo ifconfig bat0 up
+INFO:2026-03-26 22:27:08,011::
+1 interfaces are defined
+INFO:2026-03-26 22:27:08,011::
+Detecting batman compatibility of the interface:wlp2s0
+INFO:2026-03-26 22:27:08,011::
+The interface is NOT compatible
+INFO:2026-03-26 22:27:08,011::
+Reinstalling batman module
+INFO:2026-03-26 22:27:08,012::
+Removing the module: batman-adv
+INFO:2026-03-26 22:27:08,111::
+Installing the module: batman-adv
+INFO:2026-03-26 22:27:08,159::
+Running: sudo ifconfig wlp2s0 down
+INFO:2026-03-26 22:27:08,732::
+Running: sudo ip addr flush dev wlp2s0
+INFO:2026-03-26 22:27:08,751::
+Running: sudo iw dev wlp2s0 set type ibss
+INFO:2026-03-26 22:27:08,768::
+Running: sudo rfkill unblock all
+INFO:2026-03-26 22:27:08,848::
+Running: sudo ifconfig wlp2s0 up
+INFO:2026-03-26 22:27:09,103::
+Running: sudo iw dev wlp2s0 ibss join CTLnetwork 2412 HT20 fixed-freq 02:12:34:56:78:9D
+INFO:2026-03-26 22:27:09,132::
+Running: sudo ip link set mtu 1532 dev wlp2s0
+INFO:2026-03-26 22:27:09,152::
+Running: sudo batctl if add wlp2s0
+INFO:2026-03-26 22:27:09,184::
+Running: sudo ifconfig bat0 10.10.1.1/24
+INFO:2026-03-26 22:27:09,206::
+Running: sudo ifconfig bat0 up
+INFO:2026-03-26 22:28:04,615::
+1 interfaces are defined
+INFO:2026-03-26 22:28:04,615::
+Detecting batman compatibility of the interface:wlp2s0
+INFO:2026-03-26 22:28:04,615::
+The interface is NOT compatible
+INFO:2026-03-26 22:28:04,615::
+Reinstalling batman module
+INFO:2026-03-26 22:28:04,615::
+Removing the module: batman-adv
+INFO:2026-03-26 22:28:04,710::
+Installing the module: batman-adv
+INFO:2026-03-26 22:28:04,743::
+Running: sudo ifconfig wlp2s0 down
+INFO:2026-03-26 22:28:05,340::
+Running: sudo ip addr flush dev wlp2s0
+INFO:2026-03-26 22:28:05,360::
+Running: sudo iw dev wlp2s0 set type ibss
+INFO:2026-03-26 22:28:05,379::
+Running: sudo rfkill unblock all
+INFO:2026-03-26 22:28:05,460::
+Running: sudo ifconfig wlp2s0 up
+INFO:2026-03-26 22:28:05,716::
+Running: sudo iw dev wlp2s0 ibss join CTLnetwork 2412 HT20 fixed-freq 02:12:34:56:78:9D
+INFO:2026-03-26 22:28:05,745::
+Running: sudo ip link set mtu 1532 dev wlp2s0
+INFO:2026-03-26 22:28:05,765::
+Running: sudo batctl if add wlp2s0
+INFO:2026-03-26 22:28:05,799::
+Running: sudo ifconfig bat0 10.10.1.1/24
+INFO:2026-03-26 22:28:05,822::
+Running: sudo ifconfig bat0 up
+INFO:2026-03-26 22:28:52,526::
+1 interfaces are defined
+INFO:2026-03-26 22:28:52,526::
+Detecting batman compatibility of the interface:wlp2s0
+INFO:2026-03-26 22:28:52,526::
+The interface is NOT compatible
+INFO:2026-03-26 22:28:52,527::
+Reinstalling batman module
+INFO:2026-03-26 22:28:52,527::
+Removing the module: batman-adv
+INFO:2026-03-26 22:28:52,621::
+Installing the module: batman-adv
+INFO:2026-03-26 22:28:52,663::
+Running: sudo ifconfig wlp2s0 down
+INFO:2026-03-26 22:28:52,684::
+Running: sudo ip addr flush dev wlp2s0
+INFO:2026-03-26 22:28:52,705::
+Running: sudo iw dev wlp2s0 set type ibss
+INFO:2026-03-26 22:28:52,726::
+Running: sudo rfkill unblock all
+INFO:2026-03-26 22:28:52,809::
+Running: sudo ifconfig wlp2s0 up
+INFO:2026-03-26 22:28:53,071::
+Running: sudo iw dev wlp2s0 ibss join CTLnetwork 2412 HT20 fixed-freq 02:12:34:56:78:9D
+INFO:2026-03-26 22:28:53,099::
+Running: sudo ip link set mtu 1532 dev wlp2s0
+INFO:2026-03-26 22:28:53,120::
+Running: sudo batctl if add wlp2s0
+INFO:2026-03-26 22:28:53,155::
+Running: sudo ifconfig bat0 10.10.1.1/24
+INFO:2026-03-26 22:28:53,181::
+Running: sudo ifconfig bat0 up
+INFO:2026-03-26 22:36:00,292::
+1 interfaces are defined
+INFO:2026-03-26 22:36:00,292::
+Detecting batman compatibility of the interface:wlp2s0
+INFO:2026-03-26 22:36:00,292::
+The interface is NOT compatible
+INFO:2026-03-26 22:36:00,292::
+Reinstalling batman module
+INFO:2026-03-26 22:36:00,292::
+Removing the module: batman-adv
+INFO:2026-03-26 22:36:00,397::
+Installing the module: batman-adv
+INFO:2026-03-26 22:36:00,442::
+Running: sudo ifconfig wlp2s0 down
+INFO:2026-03-26 22:36:00,512::
+Running: sudo ip addr flush dev wlp2s0
+INFO:2026-03-26 22:36:00,536::
+Running: sudo iw dev wlp2s0 set type ibss
+INFO:2026-03-26 22:36:00,561::
+Running: sudo rfkill unblock all
+INFO:2026-03-26 22:36:00,658::
+Running: sudo ifconfig wlp2s0 up
+INFO:2026-03-26 22:36:00,682::
+Running: sudo iw dev wlp2s0 ibss join CTLnetwork 2412 HT20 fixed-freq 02:12:34:56:78:9D
+INFO:2026-03-26 22:36:00,705::
+Running: sudo ip link set mtu 1532 dev wlp2s0
+INFO:2026-03-26 22:36:00,730::
+Running: sudo batctl if add wlp2s0
+INFO:2026-03-26 22:36:00,773::
+Running: sudo ifconfig bat0 10.10.1.1/24
+INFO:2026-03-26 22:36:00,805::
+Running: sudo ifconfig bat0 up
+INFO:2026-03-26 22:40:26,881::
+1 interfaces are defined
+INFO:2026-03-26 22:40:26,881::
+Detecting batman compatibility of the interface:wlp2s0
+INFO:2026-03-26 22:40:26,881::
+The interface is NOT compatible
+INFO:2026-03-26 22:40:26,882::
+Reinstalling batman module
+INFO:2026-03-26 22:40:26,882::
+Removing the module: batman-adv
+INFO:2026-03-26 22:40:26,996::
+Installing the module: batman-adv
+INFO:2026-03-26 22:40:27,042::
+Running: sudo ifconfig wlp2s0 down
+INFO:2026-03-26 22:40:27,063::
+Running: sudo ip addr flush dev wlp2s0
+INFO:2026-03-26 22:40:27,084::
+Running: sudo iw dev wlp2s0 set type ibss
+INFO:2026-03-26 22:40:27,103::
+Running: sudo rfkill unblock all
+INFO:2026-03-26 22:40:27,186::
+Running: sudo ifconfig wlp2s0 up
+INFO:2026-03-26 22:40:27,436::
+Running: sudo iw dev wlp2s0 ibss join CTLnetwork 2412 HT20 fixed-freq 02:12:34:56:78:9D
+INFO:2026-03-26 22:40:27,467::
+Running: sudo ip link set mtu 1532 dev wlp2s0
+INFO:2026-03-26 22:40:27,489::
+Running: sudo batctl if add wlp2s0
+INFO:2026-03-26 22:40:27,525::
+Running: sudo ifconfig bat0 10.10.1.1/24
+INFO:2026-03-26 22:40:27,551::
+Running: sudo ifconfig bat0 up
+INFO:2026-03-26 22:44:30,579::
+1 interfaces are defined
+INFO:2026-03-26 22:44:30,579::
+Detecting batman compatibility of the interface:wlp2s0
+INFO:2026-03-26 22:44:30,580::
+The interface is NOT compatible
+INFO:2026-03-26 22:44:30,580::
+Reinstalling batman module
+INFO:2026-03-26 22:44:30,580::
+Removing the module: batman-adv
+INFO:2026-03-26 22:44:30,677::
+Installing the module: batman-adv
+INFO:2026-03-26 22:44:30,722::
+Running: sudo ifconfig wlp2s0 down
+INFO:2026-03-26 22:44:31,313::
+Running: sudo ip addr flush dev wlp2s0
+INFO:2026-03-26 22:44:31,345::
+Running: sudo iw dev wlp2s0 set type ibss
+INFO:2026-03-26 22:44:31,374::
+Running: sudo rfkill unblock all
+INFO:2026-03-26 22:44:31,457::
+Running: sudo ifconfig wlp2s0 up
+INFO:2026-03-26 22:44:31,773::
+Running: sudo iw dev wlp2s0 ibss join CTLnetwork 2412 HT20 fixed-freq 02:12:34:56:78:9D
+INFO:2026-03-26 22:44:31,795::
+Running: sudo ip link set mtu 1532 dev wlp2s0
+INFO:2026-03-26 22:44:31,818::
+Running: sudo batctl if add wlp2s0
+INFO:2026-03-26 22:44:31,855::
+Running: sudo ifconfig bat0 10.10.1.1/24
+INFO:2026-03-26 22:44:31,880::
+Running: sudo ifconfig bat0 up
+INFO:2026-03-26 22:46:01,190::
+1 interfaces are defined
+INFO:2026-03-26 22:46:01,191::
+Detecting batman compatibility of the interface:wlp2s0
+INFO:2026-03-26 22:46:01,191::
+The interface is NOT compatible
+INFO:2026-03-26 22:46:01,191::
+Reinstalling batman module
+INFO:2026-03-26 22:46:01,191::
+Removing the module: batman-adv
+INFO:2026-03-26 22:46:01,285::
+Installing the module: batman-adv
+INFO:2026-03-26 22:46:01,322::
+Running: sudo ifconfig wlp2s0 down
+INFO:2026-03-26 22:46:01,927::
+Running: sudo ip addr flush dev wlp2s0
+INFO:2026-03-26 22:46:01,950::
+Running: sudo iw dev wlp2s0 set type ibss
+INFO:2026-03-26 22:46:01,968::
+Running: sudo rfkill unblock all
+INFO:2026-03-26 22:46:02,056::
+Running: sudo ifconfig wlp2s0 up
+INFO:2026-03-26 22:46:02,302::
+Running: sudo iw dev wlp2s0 ibss join ISE-19 2437 HT20 fixed-freq 02:12:34:56:78:9D
+INFO:2026-03-26 22:46:02,331::
+Running: sudo ip link set mtu 1532 dev wlp2s0
+INFO:2026-03-26 22:46:02,355::
+Running: sudo batctl if add wlp2s0
+INFO:2026-03-26 22:46:02,396::
+Running: sudo ifconfig bat0 10.10.1.1/24
+INFO:2026-03-26 22:46:02,433::
+Running: sudo ifconfig bat0 up
