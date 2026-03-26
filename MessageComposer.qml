@@ -47,7 +47,8 @@ Rectangle {
             }
             
             Keys.onReturnPressed: (event) => {
-                if (event.modifiers & Qt.ControlModifier) {
+                if (!(event.modifiers & Qt.ShiftModifier)) {
+                    // Enter sends message (Shift+Enter for newline)
                     if (messageInput.text.trim() !== "") {
                         composer.messageSent(messageInput.text)
                         messageInput.clear()

@@ -47,10 +47,28 @@ ApplicationWindow {
 
     Component.onCompleted: {
         // Initialize with a single demo room
+        const currentUserInitials = "US"  // Will be updated after registration
+        const currentUserColor = window.userColors[0]
+        
         window.allRooms = [
-            { id: 1, name: "Demo Room", type: "public", code: "DEMO001", members: 1, messages: [
-                { sender: "System", text: "Welcome to Adhoc Chat! Start sending messages.", isOwn: false, color: userColors[5], initials: "SY" }
-            ]}
+            { 
+                id: 1, 
+                name: "Demo Room", 
+                type: "public", 
+                code: "DEMO001", 
+                members: 1,
+                roomMembers: [
+                    { 
+                        name: "System", 
+                        initials: "SY", 
+                        color: window.userColors[5], 
+                        online: false 
+                    }
+                ],
+                messages: [
+                    { sender: "System", text: "Welcome to Adhoc Chat! Start sending messages.", isOwn: false, color: window.userColors[5], initials: "SY" }
+                ]
+            }
         ]
         window.joinedRooms = []
         
@@ -126,7 +144,7 @@ ApplicationWindow {
                     id: chatHeader
                     Layout.fillWidth: true
                     roomName: window.joinedRooms[window.selectedRoomIndex] ? window.joinedRooms[window.selectedRoomIndex].name : "Room"
-                    onlineCount: 4
+                    onlineCount: window.joinedRooms[window.selectedRoomIndex] ? (window.joinedRooms[window.selectedRoomIndex].members || 1) : 1
                     someoneTyping: window.someoneTyping
                     onSettingsRequested: settingsPanel.open()
                 }
@@ -144,21 +162,28 @@ ApplicationWindow {
                     id: composer
                     Layout.fillWidth: true
                     onMessageSent: (text) => {
+                        console.log("Message sent:", text, "Selected room index:", window.selectedRoomIndex, "Total rooms:", window.joinedRooms.length)
                         if (window.selectedRoomIndex >= 0 && window.selectedRoomIndex < window.joinedRooms.length) {
                             // Get first two letters of username for initials
                             const initials = window.currentUsername.substring(0, 2).toUpperCase()
                             
-                            window.joinedRooms[window.selectedRoomIndex].messages.push({
+                            const newMessage = {
                                 sender: window.currentUsername,
                                 text: text,
                                 isOwn: true,
                                 color: window.userColors[9],
                                 initials: initials
-                            })
-                            // Trigger model update
-                            var temp = window.joinedRooms[window.selectedRoomIndex].messages
-                            window.joinedRooms[window.selectedRoomIndex].messages = []
-                            window.joinedRooms[window.selectedRoomIndex].messages = temp
+                            }
+                            
+                            window.joinedRooms[window.selectedRoomIndex].messages.push(newMessage)
+                            console.log("Message added. Total messages now:", window.joinedRooms[window.selectedRoomIndex].messages.length)
+                            
+                            // Trigger model update by reassigning the entire room object
+                            const updatedRooms = window.joinedRooms
+                            window.joinedRooms = []
+                            window.joinedRooms = updatedRooms
+                        } else {
+                            console.log("ERROR: Invalid room index or no rooms available")
                         }
                     }
                 }
@@ -175,7 +200,7 @@ ApplicationWindow {
         MembersPanel {
             Layout.fillHeight: true
             Layout.preferredWidth: 220
-            members: []
+            members: window.joinedRooms[window.selectedRoomIndex] && window.joinedRooms[window.selectedRoomIndex].roomMembers ? window.joinedRooms[window.selectedRoomIndex].roomMembers : []
         }
     }
 
@@ -198,8 +223,28 @@ ApplicationWindow {
         
         function onSetupSucceeded() {
             console.log("Network setup succeeded, entering chat...")
-            // Add user to demo room
+            // Add user to demo room with current username
             window.joinedRooms = [window.allRooms[0]]
+            
+            // Add current user to room members if not already there
+            const userInitials = window.currentUsername.substring(0, 2).toUpperCase()
+            const currentUserColor = window.userColors[window.currentUsername.length % window.userColors.length]
+            
+            if (!window.joinedRooms[0].roomMembers) {
+                window.joinedRooms[0].roomMembers = []
+            }
+            
+            // Add current user if not already in members
+            const userExists = window.joinedRooms[0].roomMembers.some(m => m.name === window.currentUsername)
+            if (!userExists) {
+                window.joinedRooms[0].roomMembers.push({
+                    name: window.currentUsername,
+                    initials: userInitials,
+                    color: currentUserColor,
+                    online: true
+                })
+            }
+            
             window.selectedRoomIndex = 0
             window.isJoiningNetwork = false
             window.isInChat = true
@@ -271,12 +316,23 @@ ApplicationWindow {
         
         onRoomCreated: (name, isPublic) => {
             const code = generateRoomCode()
+            const userInitials = window.currentUsername.substring(0, 2).toUpperCase()
+            const currentUserColor = window.userColors[window.currentUsername.length % window.userColors.length]
+            
             const newRoom = {
                 id: Date.now(),
                 name: name,
                 type: isPublic ? "public" : "private",
                 code: code,
                 members: 1,
+                roomMembers: [
+                    {
+                        name: window.currentUsername,
+                        initials: userInitials,
+                        color: currentUserColor,
+                        online: true
+                    }
+                ],
                 messages: []
             }
             
